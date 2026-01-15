@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">RecyclerEntrega</string>
+
+    <string-array name="eventos_titulos">
+        <item>Caída Imperio Romano Occidente</item>
+        <item>Descubrimiento de América</item>
+        <item>Fin de la dinastía Ming</item>
+        <item>Invención de la imprenta</item>
+        <item>Toma de Constantinopla</item>
+        <item>Primera Guerra Mundial</item>
+        <item>Segunda Guerra Mundial</item>
+        <item>Llegada del hombre a la Luna</item>
+        <item>Caída del Muro de Berlín</item>
+        <item>Independencia de Estados Unidos</item>
+        <item>Paz de Westfalia</item>
+        <item>Llegada de los borbones al trono hispánico</item>
+        <item>Independencia de las 13 colonias</item>
+        <item>Revolución Francesa</item>
+        <item>Congreso de Viena</item>
+        <item>Comuna de París</item>
+        <item>Revolución bolchevique</item>
+        <item>Fin de la I Guerra Mundial</item>
+        <item>Inicio de la Guerra Civil Española</item>
+        <item>Fin de la II Guerra Mundial</item>
+    </string-array>
+
+    <string-array name="eventos_fechas">
+        <item>476</item>
+        <item>1492</item>
+        <item>1524</item>
+        <item>1440</item>
+        <item>1453</item>
+        <item>1914</item>
+        <item>1939</item>
+        <item>1969</item>
+        <item>1989</item>
+        <item>1776</item>
+        <item>1648</item>
+        <item>1714</item>
+        <item>1776</item>
+        <item>1789</item>
+        <item>1815</item>
+        <item>1871</item>
+        <item>1917</item>
+        <item>1918</item>
+        <item>1936</item>
+        <item>1945</item>
+    </string-array>
+
+
+
+</resources>
