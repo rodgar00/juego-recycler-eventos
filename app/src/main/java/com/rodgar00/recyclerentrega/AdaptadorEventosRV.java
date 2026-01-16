@@ -6,16 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 public class AdaptadorEventosRV extends RecyclerView.Adapter<AdaptadorEventosRV.SostenDeVistas> {
-
+    int fallos = 0;
     Context context;
     ArrayList<EventModel> events;
     ArrayList<EventModel> cardsFalladas = new ArrayList<>();
@@ -45,31 +47,32 @@ public class AdaptadorEventosRV extends RecyclerView.Adapter<AdaptadorEventosRV.
         }
 
         holder.itemView.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder alertaAdivinar = new AlertDialog.Builder(context);
             View alertPopUpView = LayoutInflater.from(context)
                     .inflate(R.layout.event_popup, null);
 
             TextInputEditText inputFecha = alertPopUpView.findViewById(R.id.inputFecha);
 
-            builder.setTitle(event.getEventName())
-                    .setView(alertPopUpView)
-                    .setPositiveButton("Comprobar", (dialog, which) -> {
-                        String respuesta = inputFecha.getText().toString().trim();
+            alertaAdivinar.setTitle(event.getEventName());
+            alertaAdivinar.setView(alertPopUpView);
+            alertaAdivinar.setPositiveButton("Comprobar", (dialog, which) -> {
+                String respuesta = inputFecha.getText().toString().trim();
 
-                        if (respuesta.equals(event.getEventDate())) {
-                            events.remove(event);
-                            notifyDataSetChanged();
-                        } else {
-                            if (!cardsFalladas.contains(event)) {
-                                cardsFalladas.add(event);
-                            }
-                            holder.card.setCardBackgroundColor((ContextCompat.getColor(context, R.color.rojito))
-                            );
-                        }
+                if (respuesta.equals(event.getEventDate())) {
+                    events.remove(event);
+                    notifyDataSetChanged();
+                } else {
+                    fallos++;
+                    if (!cardsFalladas.contains(event)) {
+                        cardsFalladas.add(event);
+                    }
+                    holder.card.setCardBackgroundColor((ContextCompat.getColor(context, R.color.rojito))
+                    );
+                    Toast.makeText(context, "Has fallado " + fallos + " pregunta(s)", Toast.LENGTH_SHORT).show();
+                }
 
-                    })
-                    .setNegativeButton("Cancelar", null)
-                    .show();
+            }).setNegativeButton("Cancelar", null);
+            alertaAdivinar.show();
         });
 
     }
