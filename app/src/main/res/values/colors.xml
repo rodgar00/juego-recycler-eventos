@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="coffee">#6B492B</color>
-    <color name="cream">#FEFAE0</color>
-    <color name="rojito">#941D24</color>
+    <color name="cream">#BD5454</color>
+    <color name="rojo1">#DC4D57</color>
+    <color name="rojo2">#E2404C</color>
+    <color name="rojo3">#E03D3D</color>
+    <color name="rojo4">#9B1212</color>
+    <color name="rojo5">#920900</color>
+
 </resources>

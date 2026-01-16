@@ -4,8 +4,16 @@ public class EventModel {
     public String eventName;
     public String eventDate;
 
-    // Nuevo atributo
-    public int estado = 0; // 0 = normal, 1 = acierto, 2 = fallo
+    private int failCount = 0;
+    public int estado = 0;
+
+    public int getFailCount() {
+        return failCount;
+    }
+
+    public void incrementFailCount() {
+        if (failCount < 5) failCount++;
+    }
 
     public EventModel(String eventName, String eventDate) {
         this.eventName = eventName;

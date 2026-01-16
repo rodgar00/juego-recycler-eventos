@@ -40,10 +40,25 @@ public class AdaptadorEventosRV extends RecyclerView.Adapter<AdaptadorEventosRV.
 
         holder.tvName.setText(event.getEventName());
 
-        if (cardsFalladas.contains(event)) {
-            holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rojito));
-        } else {
-            holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.coffee));
+        switch (event.getFailCount()) {
+            case 1:
+                holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rojo1));
+                break;
+            case 2:
+                holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rojo2));
+                break;
+            case 3:
+                holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rojo3));
+                break;
+            case 4:
+                holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rojo4));
+                break;
+            case 5:
+                holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.rojo5));
+                break;
+            default:
+                holder.card.setCardBackgroundColor(ContextCompat.getColor(context, R.color.coffee));
+                break;
         }
 
         holder.itemView.setOnClickListener(v -> {
@@ -62,20 +77,16 @@ public class AdaptadorEventosRV extends RecyclerView.Adapter<AdaptadorEventosRV.
                     events.remove(event);
                     notifyDataSetChanged();
                 } else {
-                    fallos++;
-                    if (!cardsFalladas.contains(event)) {
-                        cardsFalladas.add(event);
-                    }
-                    holder.card.setCardBackgroundColor((ContextCompat.getColor(context, R.color.rojito))
-                    );
-                    Toast.makeText(context, "Has fallado " + fallos + " pregunta(s)", Toast.LENGTH_SHORT).show();
+                    event.incrementFailCount();
+                    Toast.makeText(context, "Fallos de esta pregunta: " + event.getFailCount(), Toast.LENGTH_SHORT).show();
+                    notifyItemChanged(position);
                 }
 
             }).setNegativeButton("Cancelar", null);
             alertaAdivinar.show();
         });
-
     }
+
 
     @Override
     public int getItemCount() {
